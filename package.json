@@ -1,0 +1,22 @@
+{
+  "name": "generic-matcher",
+  "version": "1.0.0",
+  "description": "General purpose generic matcher",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest .",
+    "lint": "standard . --fix"
+  },
+  "author": "Juan Convers",
+  "license": "MIT",
+  "dependencies": {
+    "leven": "^3.1.0",
+    "lodash.filter": "^4.6.0",
+    "remove-accents": "^0.4.2",
+    "slugify": "^1.5.3",
+    "sort-objects-array": "^1.7.1"
+  },
+  "devDependencies": {
+    "axios": "^0.21.1"
+  }
+}
