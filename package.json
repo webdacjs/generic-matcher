@@ -7,6 +7,16 @@
     "test": "jest .",
     "lint": "standard . --fix"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webdacjs/generic-matcher.git"
+  },
+  "keywords": [
+    "matcher",
+    "match",
+    "tokenize",
+    "search"
+  ],
   "author": "Juan Convers",
   "license": "MIT",
   "dependencies": {
