@@ -20,13 +20,17 @@ function match (queryparam, filterparam) {
     console.log('The data is not lodaded yet. Please use the loadData function first')
     return
   }
+  if (!queryparam) {
+    return
+  }
+  const queryParamStr = String(queryparam)
   const preFilteredData = filterparam && config.filterField
-    ? filter(config.data, x => x[config.filterField] === filterparam) : config.data
-  const simpleResults = simpleMatcher(queryparam, preFilteredData)
+    ? filter(config.data, x => x[config.filterField] === filterparam) : config.data 
+  const simpleResults = simpleMatcher(queryParamStr, preFilteredData)
   if (simpleResults.length > 0) {
     return simpleResults
   }
-  const advancedResults = advancedMatcher(queryparam, preFilteredData, config.mintokens)
+  const advancedResults = advancedMatcher(queryParamStr, preFilteredData, config.mintokens)
   return advancedResults
 }
 

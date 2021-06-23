@@ -2,7 +2,7 @@ const slugify = require('slugify')
 const soa = require('sort-objects-array')
 const removeAccents = require('remove-accents')
 const leven = require('leven')
-const slugRegExp = /[^A-Za-z ]/g
+const slugRegExp = /[^A-Za-z0-9 ]/g
 
 function getSluggifiedStr (str) {
   return String(slugify(removeAccents(str), { lower: true, remove: slugRegExp }))
