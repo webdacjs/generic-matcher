@@ -13,6 +13,7 @@ function loadData ({ data, match, filter, weight, ignore, mintokens, ignorePlura
   }))
   config.filterField = filter
   config.mintokens = mintokens || 2
+  config.ignorePlural = ignorePlural
 }
 
 function match (queryparam, filterparam) {
@@ -30,7 +31,7 @@ function match (queryparam, filterparam) {
   if (simpleResults.length > 0) {
     return simpleResults
   }
-  const advancedResults = advancedMatcher(queryParamStr, preFilteredData, config.mintokens)
+  const advancedResults = advancedMatcher(queryParamStr, preFilteredData, config)
   return advancedResults
 }
 

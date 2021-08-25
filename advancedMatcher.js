@@ -5,7 +5,7 @@ function intersect (a, b) {
   return filter(a, i => b.includes(i))
 }
 
-function advancedMatcher (name, data, mintokens) {
+function advancedMatcher (name, data, config) {
   const sluggifiedQuery = getSluggifiedStr(name)
   // Partial Match
   const results = filter(data, x => x.canonical.includes(sluggifiedQuery))
@@ -13,8 +13,8 @@ function advancedMatcher (name, data, mintokens) {
     return getSortedResults(results, sluggifiedQuery)
   } else {
     // Tokenized Match
-    const tokenizedQuery = getTokenizedStr(name)
-    const resultsTokenized = filter(data, x => intersect(tokenizedQuery, x.tokenized).length >= mintokens)
+    const tokenizedQuery = getTokenizedStr(name, config.ignore, config.ignorePlural)
+    const resultsTokenized = filter(data, x => intersect(tokenizedQuery, x.tokenized).length >= config.mintokens)
     if (resultsTokenized.length > 0) {
       return getSortedResults(resultsTokenized, sluggifiedQuery)
     }
