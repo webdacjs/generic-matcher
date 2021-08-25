@@ -4,12 +4,12 @@ const simpleMatcher = require('./simpleMatcher')
 const advancedMatcher = require('./advancedMatcher')
 const config = {}
 
-function loadData ({ data, match, filter, weight, ignore, mintokens }) {
+function loadData ({ data, match, filter, weight, ignore, mintokens, ignorePlural }) {
   config.data = data.map(item => ({
     ...item,
     weight: parseFloat(item[weight] || 1),
     canonical: getSluggifiedStr(item[match]),
-    tokenized: getTokenizedStr(item[match], ignore)
+    tokenized: getTokenizedStr(item[match], ignore || '', ignorePlural)
   }))
   config.filterField = filter
   config.mintokens = mintokens || 2
@@ -25,7 +25,7 @@ function match (queryparam, filterparam) {
   }
   const queryParamStr = String(queryparam)
   const preFilteredData = filterparam && config.filterField
-    ? filter(config.data, x => x[config.filterField] === filterparam) : config.data 
+    ? filter(config.data, x => x[config.filterField] === filterparam) : config.data
   const simpleResults = simpleMatcher(queryParamStr, preFilteredData)
   if (simpleResults.length > 0) {
     return simpleResults
